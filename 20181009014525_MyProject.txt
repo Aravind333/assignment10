@@ -1,0 +1,126 @@
+
+
+
+package studentnamelist;
+
+import java.util.Scanner;
+
+public class Project {
+
+
+			
+			static String nameslist[];
+			
+			static String students;
+			
+			static Scanner Scanner;
+		        public static void main(String[] args) {
+		        
+		        
+		        		
+				nameslist = new String[]{"Jonathan","Larry", "Curly", "Moe","","","","","",""}; 
+				
+		        Project students  = new Project();
+				Scanner = new Scanner(System.in);
+				int input;
+				while(true)
+				{
+					System.out.println("MAIN MENU:");
+					System.out.println("1. Display The List");
+					System.out.println("2. Insert An Element");
+					System.out.println("3. Swap Two Element");
+					System.out.println("4. Quit");
+					System.out.println("\nEnter Your Choice?");
+					
+					input = Scanner.nextInt();
+									
+					if(input == 1)
+								{
+					System.out.println("LIST CONTENT");
+							students.displayList();}
+					else if (input == 2) 
+					{ System.out.println("INSERT AN ELEMENT");
+							students.displayList();
+							System.out.println("");
+							System.out.println("WHERE TO INSERT ELEMENT:");
+							int positionToInsertName = Scanner.nextInt();
+							System.out.println("ENTER THE NAME:");
+							String name = Scanner.next();
+							students.insertName(positionToInsertName, name);
+					}
+					else if (input == 3) 
+					{System.out.println("From Element ?");
+							int initialPosition = Scanner.nextInt() ;
+							System.out.println("To Element ?");
+							int nextPosition = Scanner.nextInt();
+							students.swapTwoElements(initialPosition-1, nextPosition-1);
+					}
+					
+					else{
+				         System.out.println("This is Wrong Input");
+				      }
+					}
+						
+				}	
+				
+			public void displayList()
+			{
+				int i=1;
+				for(String studentName: nameslist)
+				{
+					System.out.println(i+". "+studentName);
+					i++;
+				}
+				
+				
+			}
+			
+			public void insertName(int position, String name)
+			{
+				
+				
+				if(position==0 || position>=10)
+				{
+					System.out.println("Please Enter Valid Position");
+					position = Scanner.nextInt();
+					insertName(position, name);
+				}
+				else if(name.equals(" ") || name.equals(null))
+				{
+					System.out.println("Please Enter Valid Name");
+					name = Scanner.next();
+					insertName(position, name);
+				}
+				else
+				{
+					if(!nameslist[position].equals(""))
+					{
+						System.out.println("This position is full enter another positon ");
+						position = Scanner.nextInt();
+						insertName(position, name);
+						
+					}
+					else
+					{
+						nameslist[position-1]=name;
+						System.out.println("Value Inserted ");
+						
+					}
+				}	
+				
+			}
+						
+			public void swapTwoElements(int initialPosition, int nextPosition)
+			{
+				String name = nameslist[initialPosition];
+				
+				nameslist[initialPosition] = nameslist[nextPosition];
+				
+				nameslist[nextPosition] = name;
+				
+				System.out.println("Elements are successfully swapped");
+				
+			}
+	}
+
+
